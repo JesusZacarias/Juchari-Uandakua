@@ -1,23 +1,14 @@
 import 'package:juchari_uandakua/features/dictionary/domain/entities/word.dart';
 
-class WordModel implements Word {
-  @override
-  final String id;
-
-  @override
-  final String? phonetic;
-
-  @override
-  final String wordEs;
-
-  @override
-  final String wordPur;
-
+class WordModel extends Word {
+  final DateTime createdAt;
   WordModel({
-    required this.id,
-    required this.wordPur,
-    required this.wordEs,
-    this.phonetic,
+    required super.id,
+    required super.wordPur,
+    required super.wordEs,
+    super.phonetic,
+    required super.categoryId,
+    required this.createdAt,
   });
 
   factory WordModel.fromMap(Map<String, dynamic> map) {
@@ -26,6 +17,8 @@ class WordModel implements Word {
       wordPur: map['word_pur'],
       wordEs: map['word_es'],
       phonetic: map['phonetic'],
+      categoryId: map['category_id'],
+      createdAt: map['created_at'],
     );
   }
 
@@ -35,6 +28,8 @@ class WordModel implements Word {
       'word_pur': wordPur,
       'word_es': wordPur,
       'phonetic': phonetic,
+      'category_id': categoryId,
+      'created_at': createdAt,
     };
   }
 }
