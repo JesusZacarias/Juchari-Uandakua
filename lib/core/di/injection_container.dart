@@ -1,4 +1,8 @@
 import 'package:get_it/get_it.dart';
+import 'package:juchari_uandakua/features/dictionary/data/data_sources/dictionary_local_data_source.dart';
+import 'package:juchari_uandakua/features/dictionary/data/data_sources/dictionary_local_data_source_impl.dart';
+import 'package:juchari_uandakua/features/dictionary/data/respositories/dictionary_repository_impl.dart';
+import 'package:juchari_uandakua/features/dictionary/domain/repositories/dictionary_repository.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:juchari_uandakua/core/database/app_database.dart';
 
@@ -28,5 +32,11 @@ Future<void> configureDependencies() async {
   final database = await initDatabase();
   sl.registerLazySingleton<Database>(() => database);
   // Registramos DataSource
-  // sl.registerLazySingleton<>()
+  sl.registerLazySingleton<DictionaryLocalDataSource>(
+    () => DictionaryLocalDataSourceImpl(sl()),
+  );
+  // registramos Repositorio de Diccionario
+  sl.registerLazySingleton<DictionaryRepository>(
+    () => DictionaryRepositoryImpl(sl()),
+  );
 }
