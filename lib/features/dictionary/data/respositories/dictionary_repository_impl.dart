@@ -21,5 +21,6 @@ class DictionaryRepositoryImpl implements DictionaryRepository {
   @override
   Future<List<Word>> searchWords(String query) async {
     final words = await dictionaryLocalDataSource.searchWords(query);
+    return words;
   }
 }

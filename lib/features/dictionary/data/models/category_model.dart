@@ -11,7 +11,7 @@ class CategoryModel extends Category {
   factory CategoryModel.fromMap(Map<String, dynamic> map) {
     return CategoryModel(
       id: map['id'],
-      nameEs: map['name_esp'],
+      nameEs: map['name_es'],
       namePur: map['name_pur'],
       description: map['description'],
     );
@@ -20,7 +20,7 @@ class CategoryModel extends Category {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
-      'name_esp': nameEs,
+      'name_es': nameEs,
       'name_pur': namePur,
       'description': description,
     };

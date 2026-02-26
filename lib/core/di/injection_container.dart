@@ -3,6 +3,9 @@ import 'package:juchari_uandakua/features/dictionary/data/data_sources/dictionar
 import 'package:juchari_uandakua/features/dictionary/data/data_sources/dictionary_local_data_source_impl.dart';
 import 'package:juchari_uandakua/features/dictionary/data/respositories/dictionary_repository_impl.dart';
 import 'package:juchari_uandakua/features/dictionary/domain/repositories/dictionary_repository.dart';
+import 'package:juchari_uandakua/features/dictionary/domain/use_cases/get_all_words_use_case.dart';
+import 'package:juchari_uandakua/features/dictionary/domain/use_cases/get_word_by_id_use_case.dart';
+import 'package:juchari_uandakua/features/dictionary/domain/use_cases/search_words_use_case.dart';
 import 'package:sqflite/sqlite_api.dart';
 import 'package:juchari_uandakua/core/database/app_database.dart';
 
@@ -39,4 +42,8 @@ Future<void> configureDependencies() async {
   sl.registerLazySingleton<DictionaryRepository>(
     () => DictionaryRepositoryImpl(sl()),
   );
+  // registramos UseCases
+  sl.registerLazySingleton(() => GetAllWordsUseCase(sl()));
+  sl.registerLazySingleton(() => GetWordByIdUseCase(sl()));
+  sl.registerLazySingleton(() => SearchWordsUseCase(sl()));
 }
